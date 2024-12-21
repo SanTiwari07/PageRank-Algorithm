@@ -25,7 +25,7 @@ int main()
     {
         printf("Enter %d link: ", a + 1);
         scanf("%d %d", &r, &c);
-        if (r > web || c > web || r <= 0 || c <= 0)
+        if (r > web || c > web || r < 0 || c < 0)
         {
             a--;
             printf("Enter valid !\n");
@@ -44,6 +44,7 @@ int main()
     }
 
     // print input matrix
+    printf("Adjacency Matrix:\n");
     for (int b = 0; b < web; b++)
     {
         for (int d = 0; d < web; d++)
@@ -66,8 +67,8 @@ int main()
             sum[q] += input[w][q];
         }
     }
-
     // it is matrix which stores 1/freq
+    printf("\nTransition Matrix:\n");
     float input2[web][web];
     for (int xx = 0; xx < web; xx++)
     {
@@ -88,17 +89,13 @@ int main()
         }
         else
         {
-            for (int t = 0; t < web; t++)
-            {
                 for (int u = 0; u < web; u++)
                 {
-                    input2[u][t] = input[u][t] / sum[t];
+                    input2[u][stw] = input[u][stw] / sum[stw];
                 }
-            }
+            
         }
     }
-
-    printf("\n\n");
 
     // prints input2 matrix
     for (int b3 = 0; b3 < web; b3++)
@@ -109,7 +106,7 @@ int main()
         }
         printf("\n");
     }
-
+    printf("\n");
     printf("Since your total web is %d\nYour zeroth iteration is equally distributed\nIteration 0 is\n", web);
 
     // this is iteration 0 matrix
@@ -152,6 +149,7 @@ int main()
         {
             printf("%.5f\n", iteration[rrr][0]);
         }
+        printf("\n");
     }
     int rank[web];
     for (int i = 0; i < web; i++)
@@ -163,7 +161,7 @@ int main()
     {
         for (int j = 0; j < web; j++)
         {
-            if (iteration0[i] > iteration0[j])
+            if (iteration0[i][0] > iteration0[j][0])
             {
                 rank[i]++;
             }
